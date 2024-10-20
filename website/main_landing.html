@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator - Landing Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9f7;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Login and Sign Up buttons styling */
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .auth-links a {
+            color: white;
+            background-color: #28a745;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-links a:hover {
+            background-color: #218838;
+        }
+
+        .main-content {
+            padding: 100px 20px;
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            margin-top: 70px; /* Added margin-top for spacing */
+        }
+
+        .main-content h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .main-content p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #34495e;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .sdg-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .sdg {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            width: 280px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sdg img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .sdg h3 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .sdg p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .sdg:hover {
+            transform: translateY(-10px);
+        }
+
+        .background-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 20s infinite linear;
+        }
+
+        .bubble:nth-child(1) {
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-duration: 25s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-duration: 18s;
+            animation-delay: 5s;
+        }
+
+        .bubble:nth-child(3) {
+            left: 70%;
+            width: 100px;
+            height: 100px;
+            animation-duration: 30s;
+        }
+
+        .bubble:nth-child(4) {
+            left: 90%;
+            width: 50px;
+            height: 50px;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        @keyframes rise {
+            from {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+
+            to {
+                bottom: 110vh;
+                transform: translateX(30px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sdg-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login and Sign Up links -->
+    <div class="auth-links">
+        <a href="./login.html">Login</a>
+        <a href="./signup.html">Sign Up</a>
+    </div>
+
+
+    <div class="main-content">
+        <h1>Welcome to Our Sustainability Journey!</h1>
+        <p>Explore how we contribute to the Sustainable Development Goals (SDGs) and track your carbon footprint.</p>
+
+        <div class="sdg-section">
+            <div class="sdg">
+                <img src="/src/images/11.jpeg" alt="SDG 11 Sustainable Cities And Communities">
+                <h3>SDG 11: Sustainable Cities And Communities</h3>
+                <p>Make cities and human settlements inclusive, safe, resilient, and sustainable.</p>
+            </div>
+
+            <div class="sdg">
+                <img src="/src/images/12.jpeg" alt="SDG 12 Life Below Water">
+                <h3>SDG 12: Responsible Consumption and Production</h3>
+                <p>Ensure sustainable consumption and production patterns.</p>
+            </div>
+
+            <div class="sdg">
+                <img src="/src/images/13.jpeg" alt="SDG 13 Climate Action">
+                <h3>SDG 13: Climate Action</h3>
+                <p>Take urgent action to combat climate change and its impacts.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

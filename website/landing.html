@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator - Landing Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #e0f7fa; /* You can change this to a lighter green if needed */
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Changed from center to flex-start */
+            overflow: auto; /* Allow scrolling */
+        }
+
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .main-content {
+            padding: 80px 20px;
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .main-content h2 {
+            font-size: 3em;
+            font-weight: 600;
+            color: #2c3e50; /* Keep this color for the header */
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .main-content p {
+            font-size: 1.4em;
+            margin: 20px 0;
+            color: #34495e; /* Darker text for contrast */
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .cta-button {
+            background-color: #28a745; /* Green background */
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-5px);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 60px;
+            animation: fadeInUp 2.5s ease-in-out;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #2ecc71, #27ae60); /* Gradient green */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            color: white;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, #27ae60, #2ecc71); /* Reverse gradient on hover */
+        }
+
+        .feature i {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .feature p {
+            font-size: 1.1em;
+            color: white;
+        }
+
+        /* Background Animation */
+        .background-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 20s infinite linear;
+        }
+
+        .bubble:nth-child(1) {
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-duration: 25s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-duration: 18s;
+            animation-delay: 5s;
+        }
+
+        .bubble:nth-child(3) {
+            left: 70%;
+            width: 100px;
+            height: 100px;
+            animation-duration: 30s;
+        }
+
+        .bubble:nth-child(4) {
+            left: 90%;
+            width: 50px;
+            height: 50px;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        @keyframes rise {
+            from {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            to {
+                bottom: 110vh;
+                transform: translateX(30px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    color: white;
+    padding: 15px 20px;
+    height: 4rem;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  ">
+    <div class="nav-left" style="
+      font-size: 2.9rem;
+      color: #0A6522;
+      text-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6);
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 800;
+    ">Carbon Counter</div>
+  
+    <div class="nav-center" style="display: flex;">
+      <a href="home.html" style="
+        text-decoration: none;
+        color: black;
+        margin: 0 15px;
+        font-size: 1.7rem;
+        border: none;
+        position: relative;
+        border-bottom: 4px solid #0077b6;
+        transition: border-bottom 0.8s ease-in-out;
+      ">Home</a>
+  
+      <a href="ngos.html" style="
+        text-decoration: none;
+        color: #354A21;
+        margin: 0 15px;
+        font-size: 1.7rem;
+        border: none;
+        position: relative;
+        transition: border-bottom 0.8s ease-in-out;
+      ">NGOs</a>
+  
+      <a href="chart.html" style="
+        text-decoration: none;
+        color: #354A21;
+        margin: 0 15px;
+        font-size: 1.7rem;
+        border: none;
+        position: relative;
+        transition: border-bottom 0.8s ease-in-out;
+      ">Analytics</a>
+  
+      <a href="participation.html" style="
+        text-decoration: none;
+        color: #354A21;
+        margin: 0 15px;
+        font-size: 1.7rem;
+        border: none;
+        position: relative;
+        transition: border-bottom 0.8s ease-in-out;
+      ">LeaderBoard</a>
+    </div>
+  </nav>
+  
+  <script>
+    // Hover effects for the links
+    document.querySelectorAll('.nav-center a, .login-icon').forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        link.style.color = '#333';
+      });
+      link.addEventListener('mouseleave', function() {
+        link.style.color = '#000000';
+        if (link.href.includes('home.html')) {
+          link.style.color = '#0A6522'; // Set to original color
+        }
+      });
+    });
+  </script>
+
+    <div class="main-content">
+        <h2>Welcome to the Carbon Footprint Calculator</h2>
+        <p>Calculate your carbon footprint and discover ways to reduce it!</p>
+       <a  href="Calculator.html"><button class="cta-button">Get Started </button></a>
+        
+
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-leaf"></i>
+                <h3>Track Your Footprint</h3>
+                <p>Monitor your carbon emissions easily and effectively.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Analyze Your Impact</h3>
+                <p>Understand the effects of your lifestyle choices.</p>
+            </div>
+           
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <h3>Community Support</h3>
+                <p>Join a community of like-minded individuals making a difference.</p>
+            </div>
+            
+            
+            <a href="coupon.html" class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Buy your coupons</h3>
+                <p>Redeem your coupons now to enjoy instant savings on your purchases and make the most of your discounts!</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

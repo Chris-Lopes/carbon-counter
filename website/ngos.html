@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impactful NGOs in India</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            color: #2C3E50;
+            margin-bottom: 20px;
+        }
+
+        .slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .ngocard {
+            min-width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .ngocard img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .ngocard img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .ngo-name {
+            font-size: 24px;
+            color: #2980B9;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: #7F8C8D;
+            margin-bottom: 10px;
+        }
+
+        .mission, .impact {
+            margin-bottom: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #2980B9;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Impactful NGOs in India</h1>
+        <div class="slider">
+            <div class="slides">
+                <div class="ngocard">
+                    <img src="https://www.smilefoundationindia.org/blog/wp-content/uploads/2023/04/339148278_218398560841902_1820816320733889924_n.jpg" alt="Green Earth Foundation activities" style="height: 500px; width: 100%;">
+                    <div class="card-content">
+                        <h2 class="ngo-name">Educate for Tomorrow</h2>
+                        <p class="location">Bangalore, Karnataka</p>
+                        <p class="mission">Providing quality education to underprivileged children in rural India.</p>
+                        <p class="impact"><strong>Impact:</strong> Established 100 schools and educated over 50,000 children.</p>
+                    </div>
+                </div>
+                <div class="ngocard">
+                    <img src="https://globalgreen.org/wp-content/uploads/Global-Green-2020-Vision-for-Earth-Campaign-Image-2-500x420.jpg" alt="Green Earth Foundation activities" style="height: 500px; width: 100%;">
+                    <div class="card-content">
+                        <h2 class="ngo-name">Green Earth Foundation</h2>
+                        <p class="location">Mumbai, Maharashtra</p>
+                        <p class="mission">Promoting environmental conservation and sustainable living practices across India.</p>
+                        <p class="impact"><strong>Impact:</strong> Planted over 1 million trees and educated 500,000 people on sustainable living.</p>
+                    </div>
+                </div>
+                <div class="ngocard">
+                    <img src="https://images-platform.99static.com//fx9S6s3lCnSNC_iamdDznc14gCs=/1121x1146:1934x1959/fit-in/500x500/99designs-contests-attachments/88/88813/attachment_88813317" alt="Health for All Initiative activities" style="height: 500px; width: 100%;">
+                    <div class="card-content">
+                        <h2 class="ngo-name">Health for All Initiative</h2>
+                        <p class="location">New Delhi, Delhi</p>
+                        <p class="mission">Improving healthcare access in remote areas of India through mobile clinics.</p>
+                        <p class="impact"><strong>Impact:</strong> Provided medical care to over 200,000 patients in 500 villages.</p>
+                    </div>
+                </div>
+                <div class="ngocard">
+                    <img src="https://asianngo.org/upload/magzine/articles/background/1551792617.jpg" alt="Women Empowerment League activities" style="height: 500px; width: 100%;">
+                    <div class="card-content">
+                        <h2 class="ngo-name">Women Empowerment League</h2>
+                        <p class="location">Jaipur, Rajasthan</p>
+                        <p class="mission">Empowering women through skill development and entrepreneurship programs.</p>
+                        <p class="impact"><strong>Impact:</strong> Trained 75,000 women and helped establish 5,000 small businesses.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.ngocard').length;
+
+            currentSlide += direction;
+
+            // Loop around the slides
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Optional: Auto-slide feature
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000); // Change slide every 5 seconds
+    </script>
+</body>
+</html>
