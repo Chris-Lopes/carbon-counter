@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1515821989300-df5e2f8c4bc6') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay {
+            background: rgba(255, 255, 255, 0.9);
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 1000px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2.5em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            animation: fadeInEach 0.8s ease-in-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInEach 0.5s forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #2ecc71;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 30px;
+        }
+
+        button:hover {
+            background: #27ae60;
+        }
+
+        .results, .suggestions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            animation: fadeIn 0.5s;
+        }
+
+        .results h2, .suggestions h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #e74c3c;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInEach {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h1><i class="fas fa-leaf"></i> Carbon Footprint Calculator</h1>
+            <div class="form-grid">
+                <div class="form-group" style="--i: 1;">
+                    <label for="dietType">Diet Type:</label>
+                    <select id="dietType" onchange="showDietNote()">
+                        <option value="mixed">Mixed</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="meat">Meat</option>
+                    </select>
+                    <div id="dietNote" class="note">Eating meat increases carbon emissions significantly!</div>
+                </div>
+
+                <div class="form-group" style="--i: 2;">
+                    <label for="electricityUsage">Electricity Usage (kWh/month):</label>
+                    <input type="number" id="electricityUsage" placeholder="Enter usage in kWh" oninput="showElectricityNote()">
+                    <div id="electricityNote" class="note">Whoa! That's a lot of energy! Are you powering a spaceship?</div>
+                </div>
+
+                <div class="form-group" style="--i: 3;">
+                    <label for="travelDistance">Travel Distance (km/month):</label>
+                    <input type="number" id="travelDistance" placeholder="Enter travel distance in km" oninput="showTravelNote()">
+                    <div id="travelNote" class="note">Are you trying to set a world record for most kilometers traveled?</div>
+                </div>
+
+                <div class="form-group" style="--i: 4;">
+                    <label for="shoppingFrequency">Shopping Frequency (times/month):</label>
+                    <input type="number" id="shoppingFrequency" placeholder="Enter shopping frequency" oninput="showShoppingNote()">
+                    <div id="shoppingNote" class="note">Looks like someone loves to shop! Are you collecting shoes or something?</div>
+                </div>
+
+                <div class="form-group" style="--i: 5;">
+                    <label for="transportMode">What mode of transport do you use?</label>
+                    <select id="transportMode">
+                        <option value="car">Car</option>
+                        <option value="bike">Bike</option>
+                        <option value="bus">Bus</option>
+                        <option value="walk">Walking</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="--i: 6;">
+                    <label for="householdMembers">Number of household members:</label>
+                    <input type="number" id="householdMembers" placeholder="Enter number of people" oninput="showMembersNote()">
+                    <div id="membersNote" class="note">More members? Guess it’s time for a family carbon reduction plan!</div>
+                </div>
+
+                <div class="form-group" style="--i: 7;">
+                    <label for="publicTransportUsage">Public Transport Usage (times/week):</label>
+                    <input type="number" id="publicTransportUsage" placeholder="Enter usage in times" oninput="showTransportNote()">
+                    <div id="transportNote" class="note">Using public transport? You're a hero for the planet!</div>
+                </div>
+
+                <div class="form-group" style="--i: 8;">
+                    <label for="meatConsumption">Meat Consumption (times/week):</label>
+                    <input type="number" id="meatConsumption" placeholder="Enter times per week" oninput="showMeatNote()">
+                    <div id="meatNote" class="note">Higher meat consumption leads to increased emissions!</div>
+                </div>
+            </div>
+
+            <button onclick="calculateCarbonFootprint()">Calculate Footprint</button>
+
+            <div id="results" class="results" style="display: none;">
+                <h2>Results</h2>
+                <p id="results-text"></p>
+            </div>
+
+            <div id="suggestions" class="suggestions" style="display: none;">
+                <h2>Suggestions</h2>
+                <p id="suggestions-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDietNote() {
+            const dietType = document.getElementById('dietType').value;
+            document.getElementById('dietNote').style.display = dietType === "meat" ? "block" : "none";
+        }
+
+        function showElectricityNote() {
+            const electricityUsage = document.getElementById('electricityUsage').value;
+            document.getElementById('electricityNote').style.display = electricityUsage > 500 ? "block" : "none";
+        }
+
+        function showTravelNote() {
+            const travelDistance = document.getElementById('travelDistance').value;
+            document.getElementById('travelNote').style.display = travelDistance > 2000 ? "block" : "none";
+        }
+
+        function showShoppingNote() {
+            const shoppingFrequency = document.getElementById('shoppingFrequency').value;
+            document.getElementById('shoppingNote').style.display = shoppingFrequency > 10 ? "block" : "none";
+        }
+
+        function showMembersNote() {
+            const householdMembers = document.getElementById('householdMembers').value;
+            document.getElementById('membersNote').style.display = householdMembers > 5 ? "block" : "none";
+        }
+
+        function showTransportNote() {
+            const publicTransportUsage = document.getElementById('publicTransportUsage').value;
+            document.getElementById('transportNote').style.display = publicTransportUsage > 4 ? "block" : "none";
+        }
+
+        function showMeatNote() {
+            const meatConsumption = document.getElementById('meatConsumption').value;
+            document.getElementById('meatNote').style.display = meatConsumption > 5 ? "block" : "none";
+        }
+
+        function calculateCarbonFootprint() {
+            const electricityUsage = parseFloat(document.getElementById('electricityUsage').value) || 0;
+            const travelDistance = parseFloat(document.getElementById('travelDistance').value) || 0;
+            const shoppingFrequency = parseFloat(document.getElementById('shoppingFrequency').value) || 0;
+            const householdMembers = parseFloat(document.getElementById('householdMembers').value) || 0;
+            const publicTransportUsage = parseFloat(document.getElementById('publicTransportUsage').value) || 0;
+            const meatConsumption = parseFloat(document.getElementById('meatConsumption').value) || 0;
+
+            const carbonFootprint = (electricityUsage * 0.5) + (travelDistance * 0.2) + (shoppingFrequency * 0.3) +
+                                    (householdMembers * 0.1) + (publicTransportUsage * 0.1) + (meatConsumption * 0.5);
+
+            let suggestions = "";
+            if (carbonFootprint < 500) {
+                suggestions = "Your carbon footprint is low. Keep up the good habits!";
+            } else if (carbonFootprint < 1000) {
+                suggestions = "Your carbon footprint is moderate. Consider reducing electricity usage and traveling shorter distances.";
+            } else {
+                suggestions = "Your carbon footprint is high. Consider significantly reducing your electricity usage, traveling less, or cutting down on meat consumption!";
+            }
+
+            document.getElementById('results-text').textContent = `Your estimated carbon footprint is ${carbonFootprint.toFixed(2)} kg CO2.`;
+            document.getElementById('suggestions-text').textContent = suggestions;
+
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('suggestions').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
