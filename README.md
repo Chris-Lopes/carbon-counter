@@ -1,9 +1,5 @@
 # Carbon Counter (C--)
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
-
 ## 🌍 Overview
 
 **Carbon Counter** is a comprehensive carbon footprint management platform that leverages blockchain technology, IoT sensors, AI-powered analytics, and a multi-platform ecosystem to help individuals and companies track, reduce, and offset their carbon emissions. The platform integrates cutting-edge technologies to provide real-time monitoring, automated carbon calculations, and a decentralized marketplace for carbon credits.
@@ -1474,63 +1470,6 @@ function getSellOrders() external view returns (Order[] memory)
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-### Reporting Issues
-
-- Use GitHub Issues to report bugs
-- Provide detailed description and steps to reproduce
-- Include screenshots if applicable
-
-### Submitting Pull Requests
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Development Guidelines
-
-- Follow existing code style
-- Add comments for complex logic
-- Update README if adding new features
-- Test thoroughly before submitting
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Team
-
-- **Chris Lopes** - Lead Developer
-- **Contributors** - Harsh, Reniyas, Russel, Rohan
-
----
-
-## 🙏 Acknowledgments
-
-- OpenZeppelin for secure smart contract libraries
-- Google Gemini AI for powerful AI capabilities
-- Expo team for React Native development tools
-- Hardhat team for Ethereum development framework
-- All open-source contributors
-
----
-
-## 📞 Contact & Support
-
-- **GitHub**: [github.com/Chris-Lopes/carbon-counter](https://github.com/Chris-Lopes/carbon-counter)
-- **Issues**: [github.com/Chris-Lopes/carbon-counter/issues](https://github.com/Chris-Lopes/carbon-counter/issues)
-- **Email**: support@carboncounter.com (if available)
-
----
 
 ## 🗺️ Roadmap
 
